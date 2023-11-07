@@ -9,7 +9,7 @@ class Recetas(models.Model):
     nombre = models.CharField(max_length=64)
     receta = models.TextField()
 
-class Articulos(models.Models):
+class Articulos(models.Model):
     autor = models.CharField(max_length=64)
     cafeteria_reseniada = models.ForeignKey(Cafeterias, on_delete=models.CASCADE)
     
