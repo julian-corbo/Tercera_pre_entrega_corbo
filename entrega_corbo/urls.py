@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from entrega_corbo.views import inicio
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', inicio),
     path('blog/', include('blog.urls')),
 ]

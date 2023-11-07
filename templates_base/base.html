@@ -5,11 +5,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema Coder de la comision 47780</title>
+  {% block titulo %}{% endblock titulo %}
 </head>
 <body>
   <p style="color: blue;">
-   Bienvenido/a
+    Brew & Review
   </p>
 </body>
 </html>
@@ -42,6 +42,8 @@
         </nav>
 
         <section style="padding:4rem 3rem;">
+            {% block contenido%}
+            {% endblock contenido %}
         </section>
 
         <!-- Footer-->

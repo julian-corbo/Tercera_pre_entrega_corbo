@@ -1,10 +1,10 @@
 from django.shortcuts import render
 
-def lista_cafeterias(request):
+def inicio(request):
 
     http_response = render(
         request=request,
-        template_name='base.html',
+        template_name='incio.html',
     )
     
     return http_response
