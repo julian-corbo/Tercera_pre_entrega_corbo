@@ -12,7 +12,7 @@ class ArticulosFormulario(forms.Form):
     
     titulo = forms.CharField(required=True,max_length=64)
     texto = forms.CharField(required=True,widget=forms.Textarea)
-    puntaje = forms.IntegerField(required=True, max_value=5)
+    puntaje = forms.IntegerField(required=True, min_value=1, max_value=5)
 
 class RecetasFormulario(forms.Form):
     nombre = forms.CharField(required=True, max_length=64)
