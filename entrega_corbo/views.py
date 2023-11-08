@@ -4,7 +4,7 @@ def inicio(request):
 
     http_response = render(
         request=request,
-        template_name='incio.html',
+        template_name='inicio.html',
     )
     
     return http_response
