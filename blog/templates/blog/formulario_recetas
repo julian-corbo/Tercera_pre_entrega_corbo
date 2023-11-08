@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<title>Agregar nuevo Articulo </title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+<form method="post">
+ {% csrf_token %}
+ {{ formulario.as_p }}
+ {{ formulario.errors }}
+ <input class= 'btn btn-success' type="submit" value="Enviar" />
+</form>
+<br>
+<a href="{% url lista_recetas %}">Volver a la lista </a>
+{% endblock contenido %}
