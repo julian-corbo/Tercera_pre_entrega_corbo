@@ -21,6 +21,6 @@ from entrega_corbo.views import inicio
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', inicio),
+    path('', inicio, name='inicio'),
     path('blog/', include('blog.urls')),
 ]

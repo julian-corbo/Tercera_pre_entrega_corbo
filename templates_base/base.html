@@ -29,10 +29,12 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="">Articulos</a>
-                <a class="navbar-brand" href="#!">Cafeterias</a>
-                <a class="navbar-brand" href="#!">Recetas</a>
-                <a class="btn btn-primary" href="#signup">INICIAR</a>
+                <a class="navbar-brand" href="{% url 'inicio'%}">INICIO</a>
+                <a class="navbar-brand" href="{% url 'lista_articulos'%}">Articulos</a>
+                <a class="navbar-brand" href="{% url 'lista_cafeterias'%}">Cafeterias</a>
+                <a class="navbar-brand" href="{% url 'lista_recetas'%}">Recetas</a>
+                <a class="btn btn-primary" href="#signup">Sign In</a>
+                <a class="btn btn-light" href="#signup">Sign Up</a>
             </div>
         </nav>
 
