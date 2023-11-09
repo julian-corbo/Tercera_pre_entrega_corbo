@@ -123,3 +123,34 @@ def crear_receta(request):
    )
    return http_response
 
+def buscar_cafeteria(request):
+   if request.method == "POST":
+       data = request.POST
+       busqueda = data["busqueda"]
+       cafeteria = Cafeterias.objects.filter(nombre__icontains=busqueda)
+       contexto = {
+           "cafeteria": cafeteria,
+       }
+       http_response = render(
+           request=request,
+           template_name='blog/cafeterias.html',
+           context=contexto,
+       )
+       return http_response
+
+def buscar_receta(request):
+   if request.method == "POST":
+       data = request.POST
+       busqueda = data["busqueda"]
+       receta = Recetas.objects.filter(nombre__icontains=busqueda)
+       contexto = {
+           "receta": receta,
+       }
+       http_response = render(
+           request=request,
+           template_name='blog/recetas.html',
+           context=contexto,
+       )
+       return http_response
+
+
