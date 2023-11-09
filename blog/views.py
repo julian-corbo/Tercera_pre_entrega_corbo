@@ -158,7 +158,7 @@ def buscar_articulo(request):
        data = request.POST
        busqueda = data["busqueda"]
        articulo = Articulos.objects.filter(
-           Q(autor__icontains= busqueda) | Q(cafeteria_reseniada__icontains= busqueda) | Q(titulo__icontains= busqueda)    
+           Q(autor__icontains= busqueda) | Q(cafeteria_reseniada__nombre__icontains= busqueda) | Q(titulo__icontains= busqueda)    
        )
        contexto = {
            "articulos": articulo,
