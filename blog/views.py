@@ -129,7 +129,7 @@ def buscar_cafeteria(request):
        busqueda = data["busqueda"]
        cafeteria = Cafeterias.objects.filter(nombre__icontains=busqueda)
        contexto = {
-           "cafeteria": cafeteria,
+           "cafeterias": cafeteria,
        }
        http_response = render(
            request=request,
@@ -144,7 +144,7 @@ def buscar_receta(request):
        busqueda = data["busqueda"]
        receta = Recetas.objects.filter(nombre__icontains=busqueda)
        contexto = {
-           "receta": receta,
+           "recetas": receta,
        }
        http_response = render(
            request=request,
@@ -161,7 +161,7 @@ def buscar_articulo(request):
            Q(autor__icontains= busqueda) | Q(cafeteria_reseniada__icontains= busqueda) | Q(titulo__icontains= busqueda)    
        )
        contexto = {
-           "articulo": articulo,
+           "articulos": articulo,
        }
        http_response = render(
            request=request,
