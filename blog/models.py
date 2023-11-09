@@ -26,4 +26,4 @@ class Articulos(models.Model):
     )
 
     def __str__(self):
-        return f"{self.titulo} por {self.autor}" 
+        return f"{self.titulo} por {self.autor} (Escribe Sobre: {self.cafeteria_reseniada})" #me gustaria que solo me muestre el nombre y no la direccion

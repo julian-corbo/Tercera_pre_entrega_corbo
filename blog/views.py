@@ -58,7 +58,7 @@ def crear_cafeteria(request):
            cafeteria = Cafeterias(nombre=nombre, direccion=direccion)  # lo crean solo en RAM
            cafeteria.save()  # Lo guardan en la Base de datos
 
-           # Redirecciono al usuario a la lista de cursos
+           # Redirecciono al usuario a la lista 
            url_exitosa = reverse('lista_cafeterias')  
            return redirect(url_exitosa)
    else:  # GET
@@ -78,15 +78,15 @@ def crear_articulo(request):
        if formulario.is_valid():
            data = formulario.cleaned_data  # es un diccionario
            autor = data["autor"]
-           cafeteria = data["cafeteria"]
+           cafeteria_reseniada = data["cafeteria_reseniada"]
            titulo = data["titulo"]
            texto = data["texto"]
            puntaje = data["puntaje"]
 
-           articulo = Articulos(autor=autor, cafeteria=cafeteria, titulo=titulo, texto=texto, puntaje=puntaje)  # lo crean solo en RAM
+           articulo = Articulos(autor=autor, cafeteria_reseniada=cafeteria_reseniada, titulo=titulo, texto=texto, puntaje=puntaje)  # lo crean solo en RAM
            articulo.save()  # Lo guardan en la Base de datos
 
-           # Redirecciono al usuario a la lista de cursos
+           # Redirecciono al usuario a la lista 
            url_exitosa = reverse('lista_articulos')  
            return redirect(url_exitosa)
    else:  # GET
@@ -110,7 +110,7 @@ def crear_receta(request):
            receta = Recetas(nombre=nombre, receta=receta)  # lo crean solo en RAM
            receta.save()  # Lo guardan en la Base de datos
 
-           # Redirecciono al usuario a la lista de cursos
+           # Redirecciono al usuario a la lista 
            url_exitosa = reverse('lista_recetas')  
            return redirect(url_exitosa)
    else:  # GET
