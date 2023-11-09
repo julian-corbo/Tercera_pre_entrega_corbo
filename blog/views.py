@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
+from django.db.models import Q
 from blog.forms import CafeteriaFormulario,ArticulosFormulario,RecetasFormulario
 from blog.models import Cafeterias,Recetas,Articulos
 
@@ -149,6 +149,23 @@ def buscar_receta(request):
        http_response = render(
            request=request,
            template_name='blog/recetas.html',
+           context=contexto,
+       )
+       return http_response
+   
+def buscar_articulo(request):
+   if request.method == "POST":
+       data = request.POST
+       busqueda = data["busqueda"]
+       articulo = Articulos.objects.filter(
+           Q(autor__icontains= busqueda) | Q(cafeteria_reseniada__icontains= busqueda) | Q(titulo__icontains= busqueda)    
+       )
+       contexto = {
+           "articulo": articulo,
+       }
+       http_response = render(
+           request=request,
+           template_name='blog/articulos.html',
            context=contexto,
        )
        return http_response

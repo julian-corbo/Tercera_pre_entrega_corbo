@@ -8,7 +8,7 @@ class CafeteriaFormulario(forms.Form):
 
 class ArticulosFormulario(forms.Form):
     autor = forms.CharField(required=True,max_length=64)
-    cafeteria= forms.ModelChoiceField(required=True,queryset=Cafeterias.objects.all())
+    cafeteria_reseniada= forms.ModelChoiceField(required=True,queryset=Cafeterias.objects.all())
     
     titulo = forms.CharField(required=True,max_length=64)
     texto = forms.CharField(required=True,widget=forms.Textarea)
