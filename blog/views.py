@@ -42,16 +42,32 @@ class CafeteriasCreateView(LoginRequiredMixin,CreateView):
    model = Cafeterias
    fields = ('nombre', 'direccion')
    success_url = reverse_lazy('lista_cafeterias')
+
+   def form_valid(self, form):
+    """If the form is valid, save the associated model."""
+    self.object = form.save(creador= self.request.user)
+    return super().form_valid(form)
    
 class ArticulosCreateView(LoginRequiredMixin,CreateView):
    model = Articulos
    fields = ('autor', 'cafeteria_reseniada','titulo','texto','puntaje')
    success_url = reverse_lazy('lista_articulos')
+
+   def form_valid(self, form):
+    """If the form is valid, save the associated model."""
+    self.object = form.save(creador= self.request.user)
+    return super().form_valid(form)
    
 class RecetasCreateView(LoginRequiredMixin,CreateView):
    model = Recetas
    fields = ('nombre', 'receta')
    success_url = reverse_lazy('lista_recetas')
+   
+   def form_valid(self, form):
+    self.object = form.save(creador= self.request.user)
+    return super().form_valid(form)
+
+   
 
 #UpdateView
 class CafeteriasUpdateView(LoginRequiredMixin,UpdateView):
