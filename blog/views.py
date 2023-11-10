@@ -42,7 +42,7 @@ class CafeteriasCreateView(CreateView):
    
 class ArticulosCreateView(CreateView):
    model = Articulos
-   fields = ('autor', 'cafeteria_resenias','titulo','texto','puntaje')
+   fields = ('autor', 'cafeteria_reseniada','titulo','texto','puntaje')
    success_url = reverse_lazy('lista_articulos')
    
 class RecetasCreateView(CreateView):
@@ -58,7 +58,7 @@ class CafeteriasUpdateView(UpdateView):
 
 class ArticulosUpdateView(UpdateView):
    model = Articulos
-   fields = ('autor', 'cafeteria_resenias','titulo','texto','puntaje')
+   fields = ('autor', 'cafeteria_reseniada','titulo','texto','puntaje')
    success_url = reverse_lazy('lista_articulos')
 
 class RecetasUpdateView(UpdateView):
