@@ -1,9 +1,86 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.db.models import Q
+from django.views.generic import ListView,CreateView,DetailView,UpdateView,DeleteView
+
 from blog.forms import CafeteriaFormulario,ArticulosFormulario,RecetasFormulario
 from blog.models import Cafeterias,Recetas,Articulos
 
+#ListView
+class CafeteriasListView(ListView):
+   model = Cafeterias
+   template_name = 'blog/lista_cafeterias.html'
+
+class ArticulosListView(ListView):
+   model = Articulos
+   template_name = 'blog/lista_articulos.html'
+
+class RecetasListView(ListView):
+   model = Recetas
+   template_name = 'blog/lista_recetas.html'
+
+#DetailView
+
+class CafeteriasDetailView(DetailView):
+   model = Cafeterias
+   success_url = reverse_lazy('lista_cafeterias')
+   
+class ArticulosDetailView(DetailView):
+   model = Articulos
+   success_url = reverse_lazy('lista_articulos')
+
+class RecetasDetailView(DetailView):
+   model = Recetas
+   success_url = reverse_lazy('lista_recetas')
+
+#CreateView
+
+class CafeteriasCreateView(CreateView):
+   model = Cafeterias
+   fields = ('nombre', 'direccion')
+   success_url = reverse_lazy('lista_cafeterias')
+   
+class ArticulosCreateView(CreateView):
+   model = Articulos
+   fields = ('autor', 'cafeteria_resenias','titulo','texto','puntaje')
+   success_url = reverse_lazy('lista_articulos')
+   
+class RecetasCreateView(CreateView):
+   model = Recetas
+   fields = ('nombre', 'receta')
+   success_url = reverse_lazy('lista_recetas')
+
+#UpdateView
+class CafeteriasUpdateView(UpdateView):
+   model = Cafeterias
+   fields = ('nombre', 'direccion')
+   success_url = reverse_lazy('lista_cafeterias')
+
+class ArticulosUpdateView(UpdateView):
+   model = Articulos
+   fields = ('autor', 'cafeteria_resenias','titulo','texto','puntaje')
+   success_url = reverse_lazy('lista_articulos')
+
+class RecetasUpdateView(UpdateView):
+   model = Recetas
+   fields = ('nombre', 'receta')
+   success_url = reverse_lazy('lista_recetas')
+
+#DeleteView
+
+class CafeteriasDeleteView(DeleteView):
+   model = Cafeterias
+   success_url = reverse_lazy('lista_cafeterias')
+
+class ArticulosDeleteView(DeleteView):
+   model = Articulos
+   success_url = reverse_lazy('lista_articulos')
+
+class RecetasDeleteView(DeleteView):
+   model = Recetas
+   success_url = reverse_lazy('lista_recetas')
+
+#listView
 def lista_cafeterias(request):
 
     contexto = {
@@ -17,7 +94,6 @@ def lista_cafeterias(request):
     )
     
     return http_response
-
 
 def lista_recetas(request):
 
@@ -47,6 +123,7 @@ def lista_articulos(request):
     
     return http_response
 
+#create view
 def crear_cafeteria(request):
    if request.method == "POST":
        formulario = CafeteriaFormulario(request.POST)
@@ -123,6 +200,7 @@ def crear_receta(request):
    )
    return http_response
 
+#buscar
 def buscar_cafeteria(request):
    if request.method == "POST":
        data = request.POST

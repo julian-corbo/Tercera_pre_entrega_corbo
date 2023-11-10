@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<p>
+ <strong>Nombre:</strong> {{object.nombre}}
+</p>
+<p>
+ <strong>Direccion:</strong> {{object.direccion}}
+</p>
+<br>
+<a href="{% url 'lista_cafeterias' %}">Volver lista</a>
+
+{% endblock contenido %}

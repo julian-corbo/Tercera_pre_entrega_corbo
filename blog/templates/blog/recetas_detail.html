@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<p>
+ <strong>{{object.nombre}}</strong> 
+</p>
+<p>
+{{object.receta}}
+</p>
+<br>
+<a href="{% url 'lista_recetas' %}">Volver lista</a>
+
+{% endblock contenido %}

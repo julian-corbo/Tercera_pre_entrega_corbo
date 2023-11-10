@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<title>Brew & Review - Cafeterias</title>
+{% endblock titulo %}
+
+{% block contenido %}
+<section>
+ <div>
+   <h1>Brew & Review</h1>
+   <h3>Cafeterias:</h3>
+   <br>
+   <form action="{% url 'buscar_cafeteria' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="busqueda">
+        <input type="submit" value="Buscar cafeteria">
+    </form>
+    <br>
+
+   <table class="table">
+     <tbody>
+       <tr>
+         <th>Nombre</th>
+         <th>Direccion</th>
+         <td></td>
+         <td></td>
+         <td></td>
+       </tr>
+       {% for cafeterias in object_list %}
+       <tr>
+         <td>{{ cafeterias.nombre }}</td>
+         <td>{{ cafeterias.direccion}}</td>
+         <td>
+           <a href="{% url 'ver_cafeteria' cafeterias.id %}">Ver</a>
+         </td>
+         <td>
+           <a href="{% url 'editar_cafeteria' cafeterias.id %}">Editar</a>
+         </td>
+         <td>
+           <a href="{% url 'eliminar_cafeteria' cafeterias.id %}">
+             <i class="bi bi-trash"></i>
+           </a>
+         </td>
+       </tr>
+       {% endfor %}
+     </tbody>
+   </table>
+   <br>
+   <a href="{% url 'crear_cafeteria' %}">Agregar Cafeteria</a>
+   <br>
+ </div>
+</section>
+{% endblock contenido %}
+
+    
+
+<!--
+
+<a href="{% url 'lista_cafeterias' %}">Ver todas</a>
+<a href="{% url 'crear_cafeteria' %}">Agregar cafeteria</a>
+
+-->
+

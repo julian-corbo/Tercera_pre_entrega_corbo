@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<p>
+ <strong> {{object.titulo}} </strong> Por {{object.autor}} 
+</p>
+<p>
+ <strong>Cafeteria:</strong> {{object.cafeteria_reseniada}}
+</p>
+<p>
+    {{object.texto}}
+</p>
+<p>
+ <strong>Puntaje:</strong> {{object.puntaje}}
+</p>
+
+<br>
+<a href="{% url 'lista_articulos' %}">Volver lista</a>
+
+{% endblock contenido %}

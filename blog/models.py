@@ -6,7 +6,7 @@ class Cafeterias(models.Model):
     direccion = models.CharField(max_length=1024)
 
     def __str__(self):
-        return f'{self.nombre}, Direccion: {self.direccion}'
+        return f'{self.nombre}'
     
 class Recetas(models.Model):
     nombre = models.CharField(max_length=64)

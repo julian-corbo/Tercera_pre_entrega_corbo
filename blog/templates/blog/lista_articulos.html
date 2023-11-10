@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<title>Brew & Review - Articulos</title>
+{% endblock titulo %}
+
+{% block contenido %}
+<section>
+ <div>
+   <h1>Brew & Review</h1>
+   <h3>Articulos:</h3>
+   <br>
+   <form action="{% url 'buscar_articulo' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="busqueda">
+        <input type="submit" value="Buscar articulo">
+    </form>
+    <br>
+
+   <table class="table">
+     <tbody>
+       <tr>
+         <th>Titulo</th>
+         <th>Autor</th>
+         <th>Cafeteria</th>
+         <th>Puntaje</th>
+         <td></td>
+         <td></td>
+         <td></td>
+       </tr>
+       {% for articulos in object_list %}
+       <tr>
+         <td>{{ articulos.titulo }}</td>
+         <td>{{ articulos.autor }}</td>
+         <td>{{ articulos.cafeteria_reseniada }}</td>
+         <td>{{ articulos.puntaje }}</td>
+         <td>
+           <a href="{% url 'ver_articulo' articulos.id %}">Ver</a>
+         </td>
+         <td>
+           <a href="{% url 'editar_articulo' articulos.id %}">Editar</a>
+         </td>
+         <td>
+           <a href="{% url 'eliminar_articulo' articulos.id %}">
+             <i class="bi bi-trash"></i>
+           </a>
+         </td>
+       </tr>
+       {% endfor %}
+     </tbody>
+   </table>
+   <br>
+   <a href="{% url 'crear_articulo' %}">Crear articulo</a>
+   <br>
+ </div>
+</section>
+{% endblock contenido %}
+
+    
+
+<!--En la entrega final se deberia poder apretar la lista para acceder a los articulos, Ni idea como se hace jeje--> 
