@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.db.models import Q
 from django.views.generic import ListView,CreateView,DetailView,UpdateView,DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from blog.forms import CafeteriaFormulario,ArticulosFormulario,RecetasFormulario
 from blog.models import Cafeterias,Recetas,Articulos
+
+
 
 #ListView
 class CafeteriasListView(ListView):
@@ -35,50 +38,100 @@ class RecetasDetailView(DetailView):
 
 #CreateView
 
-class CafeteriasCreateView(CreateView):
+class CafeteriasCreateView(LoginRequiredMixin,CreateView):
    model = Cafeterias
    fields = ('nombre', 'direccion')
    success_url = reverse_lazy('lista_cafeterias')
    
-class ArticulosCreateView(CreateView):
+class ArticulosCreateView(LoginRequiredMixin,CreateView):
    model = Articulos
    fields = ('autor', 'cafeteria_reseniada','titulo','texto','puntaje')
    success_url = reverse_lazy('lista_articulos')
    
-class RecetasCreateView(CreateView):
+class RecetasCreateView(LoginRequiredMixin,CreateView):
    model = Recetas
    fields = ('nombre', 'receta')
    success_url = reverse_lazy('lista_recetas')
 
 #UpdateView
-class CafeteriasUpdateView(UpdateView):
+class CafeteriasUpdateView(LoginRequiredMixin,UpdateView):
    model = Cafeterias
    fields = ('nombre', 'direccion')
    success_url = reverse_lazy('lista_cafeterias')
 
-class ArticulosUpdateView(UpdateView):
+class ArticulosUpdateView(LoginRequiredMixin,UpdateView):
    model = Articulos
    fields = ('autor', 'cafeteria_reseniada','titulo','texto','puntaje')
    success_url = reverse_lazy('lista_articulos')
 
-class RecetasUpdateView(UpdateView):
+class RecetasUpdateView(LoginRequiredMixin,UpdateView):
    model = Recetas
    fields = ('nombre', 'receta')
    success_url = reverse_lazy('lista_recetas')
 
 #DeleteView
 
-class CafeteriasDeleteView(DeleteView):
+class CafeteriasDeleteView(LoginRequiredMixin,DeleteView):
    model = Cafeterias
    success_url = reverse_lazy('lista_cafeterias')
 
-class ArticulosDeleteView(DeleteView):
+class ArticulosDeleteView(LoginRequiredMixin,DeleteView):
    model = Articulos
    success_url = reverse_lazy('lista_articulos')
 
-class RecetasDeleteView(DeleteView):
+class RecetasDeleteView(LoginRequiredMixin,DeleteView):
    model = Recetas
    success_url = reverse_lazy('lista_recetas')
+
+#Vista Funcional
+#Buscar
+def buscar_cafeteria(request):
+   if request.method == "POST":
+       data = request.POST
+       busqueda = data["busqueda"]
+       cafeteria = Cafeterias.objects.filter(nombre__icontains=busqueda)
+       contexto = {
+           "cafeterias": cafeteria,
+       }
+       http_response = render(
+           request=request,
+           template_name='blog/cafeterias.html',
+           context=contexto,
+       )
+       return http_response
+
+def buscar_receta(request):
+   if request.method == "POST":
+       data = request.POST
+       busqueda = data["busqueda"]
+       receta = Recetas.objects.filter(nombre__icontains=busqueda)
+       contexto = {
+           "recetas": receta,
+       }
+       http_response = render(
+           request=request,
+           template_name='blog/recetas.html',
+           context=contexto,
+       )
+       return http_response
+   
+def buscar_articulo(request):
+   if request.method == "POST":
+       data = request.POST
+       busqueda = data["busqueda"]
+       articulo = Articulos.objects.filter(
+           Q(autor__icontains= busqueda) | Q(cafeteria_reseniada__nombre__icontains= busqueda) | Q(titulo__icontains= busqueda)    
+       )
+       contexto = {
+           "articulos": articulo,
+       }
+       http_response = render(
+           request=request,
+           template_name='blog/articulos.html',
+           context=contexto,
+       )
+       return http_response
+
 
 #listView
 def lista_cafeterias(request):
@@ -200,52 +253,6 @@ def crear_receta(request):
    )
    return http_response
 
-#buscar
-def buscar_cafeteria(request):
-   if request.method == "POST":
-       data = request.POST
-       busqueda = data["busqueda"]
-       cafeteria = Cafeterias.objects.filter(nombre__icontains=busqueda)
-       contexto = {
-           "cafeterias": cafeteria,
-       }
-       http_response = render(
-           request=request,
-           template_name='blog/cafeterias.html',
-           context=contexto,
-       )
-       return http_response
 
-def buscar_receta(request):
-   if request.method == "POST":
-       data = request.POST
-       busqueda = data["busqueda"]
-       receta = Recetas.objects.filter(nombre__icontains=busqueda)
-       contexto = {
-           "recetas": receta,
-       }
-       http_response = render(
-           request=request,
-           template_name='blog/recetas.html',
-           context=contexto,
-       )
-       return http_response
-   
-def buscar_articulo(request):
-   if request.method == "POST":
-       data = request.POST
-       busqueda = data["busqueda"]
-       articulo = Articulos.objects.filter(
-           Q(autor__icontains= busqueda) | Q(cafeteria_reseniada__nombre__icontains= busqueda) | Q(titulo__icontains= busqueda)    
-       )
-       contexto = {
-           "articulos": articulo,
-       }
-       http_response = render(
-           request=request,
-           template_name='blog/articulos.html',
-           context=contexto,
-       )
-       return http_response
 
 
