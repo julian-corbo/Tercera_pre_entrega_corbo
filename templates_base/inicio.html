@@ -5,5 +5,9 @@
 {% endblock titulo %}
 
 {% block contenido %}
+{% if user.is_authenticated %}
 <h1>Bienvenido/a a Brew & Review, {{user.first_name}}. El cafe esta pronto</h1>
+{% else %}
+<h1>Bienvenido/a a Brew & Review</h1>
+{% endif %}
 {% endblock contenido %}

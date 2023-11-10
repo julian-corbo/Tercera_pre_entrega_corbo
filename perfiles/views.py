@@ -8,7 +8,7 @@ from django.contrib.auth import login, authenticate
 from perfiles.forms import UserRegisterForm
 
 #Vista Funcional
-def registro(request):
+def signup(request):
    if request.method == "POST":
        formulario = UserRegisterForm(request.POST)
 
@@ -20,7 +20,7 @@ def registro(request):
        formulario = UserRegisterForm()
    return render(
        request=request,
-       template_name='perfiles/registro.html',
+       template_name='perfiles/signup.html',
        context={'form': formulario},
    )
 
