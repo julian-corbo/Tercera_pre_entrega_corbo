@@ -37,6 +37,7 @@
          <td>
            <a href="{% url 'ver_articulo' articulos.id %}">Ver</a>
          </td>
+         {% if articulos.creador == user %}
          <td>
            <a href="{% url 'editar_articulo' articulos.id %}">Editar</a>
          </td>
@@ -45,6 +46,7 @@
              <i class="bi bi-trash"></i>
            </a>
          </td>
+         {% endif %}
        </tr>
        {% endfor %}
      </tbody>
