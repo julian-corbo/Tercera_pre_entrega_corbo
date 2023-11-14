@@ -32,5 +32,10 @@ class Articulos(models.Model):
         default=0, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
 
+    def save(self, *args, **kwargs):
+        if self.creador:
+            self.autor = f"{self.creador.first_name} {self.creador.last_name}"
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.titulo} por {self.autor} (Escribe Sobre: {self.cafeteria_reseniada})" #me gustaria que solo me muestre el nombre y no la direccion

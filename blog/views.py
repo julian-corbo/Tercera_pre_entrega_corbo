@@ -50,7 +50,7 @@ class CafeteriasCreateView(LoginRequiredMixin,CreateView):
    
 class ArticulosCreateView(LoginRequiredMixin,CreateView):
    model = Articulos
-   fields = ('autor', 'cafeteria_reseniada','titulo','texto','puntaje')
+   fields = ( 'cafeteria_reseniada','titulo','texto','puntaje')
    success_url = reverse_lazy('lista_articulos')
    
    def form_valid(self, form):
