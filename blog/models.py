@@ -11,16 +11,16 @@ class Cafeterias(models.Model):
     def __str__(self):
         return f'{self.nombre}'
     
+from ckeditor.fields import RichTextField
 class Recetas(models.Model):
     nombre = models.CharField(max_length=64)
-    receta = models.TextField()
+    receta = RichTextField()
 
     creador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.nombre
 
-from ckeditor.fields import RichTextField
 class Articulos(models.Model):
     autor = models.CharField(max_length=64)
     cafeteria_reseniada = models.ForeignKey(Cafeterias, on_delete=models.CASCADE)

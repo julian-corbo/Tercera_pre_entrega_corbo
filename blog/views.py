@@ -60,7 +60,7 @@ class ArticulosCreateView(LoginRequiredMixin,CreateView):
    
 class RecetasCreateView(LoginRequiredMixin,CreateView):
    model = Recetas
-   fields = ('nombre', 'receta')
+   form_class= RecetasFormulario
    success_url = reverse_lazy('lista_recetas')
    
    def form_valid(self, form):
