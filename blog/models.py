@@ -20,6 +20,7 @@ class Recetas(models.Model):
     def __str__(self):
         return self.nombre
 
+from ckeditor.fields import RichTextField
 class Articulos(models.Model):
     autor = models.CharField(max_length=64)
     cafeteria_reseniada = models.ForeignKey(Cafeterias, on_delete=models.CASCADE)
@@ -27,7 +28,7 @@ class Articulos(models.Model):
     creador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     
     titulo = models.CharField(max_length=64)
-    texto = models.TextField()
+    texto = RichTextField()
     puntaje = models.IntegerField(
         default=0, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )

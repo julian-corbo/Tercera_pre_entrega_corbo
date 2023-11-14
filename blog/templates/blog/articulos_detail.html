@@ -1,15 +1,28 @@
 {% extends "base.html" %}
 
+{% block titulo %}
+<head>
+    <title>{{ articulo.titulo }}</title>
+    {% load static %}
+    <script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+</head>
+{% endblock titulo %}
+
+
 {% block contenido %}
 
 <p>
- <strong> {{object.titulo}} </strong> Por {{object.autor}} 
+    <h1>
+        <strong> {{object.titulo}} </strong>
+    </h1> 
+    <strong>Por {{object.autor}}</strong>
 </p>
 <p>
  <strong>Cafeteria:</strong> {{object.cafeteria_reseniada}}
 </p>
 <p>
-    {{object.texto}}
+    {{object.texto | safe}}
 </p>
 <p>
  <strong>Puntaje:</strong> {{object.puntaje}}

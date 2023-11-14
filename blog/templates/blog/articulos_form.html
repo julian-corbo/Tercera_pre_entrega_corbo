@@ -1,10 +1,20 @@
 {% extends "base.html" %}
 
 {% block titulo %}
-<title>Nuevo articulo </title>
+<head>
+    <title>{{ articulos.titulo }}</title>
+    {% load static %}
+    <script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+</head>
 {% endblock titulo %}
 
 {% block contenido %}
+
+<h1>{{ articulos.titulo }}</h1>
+<div>{{ articulos.contenido|safe }}</div>
+
+<br>
 
 <form method="post">
  {% csrf_token %}
