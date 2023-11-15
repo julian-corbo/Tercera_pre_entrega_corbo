@@ -112,7 +112,7 @@ def buscar_cafeteria(request):
        }
        http_response = render(
            request=request,
-           template_name='blog/cafeterias.html',
+           template_name='blog/lista_cafeterias.html',
            context=contexto,
        )
        return http_response
@@ -127,7 +127,7 @@ def buscar_receta(request):
        }
        http_response = render(
            request=request,
-           template_name='blog/recetas.html',
+           template_name='blog/lista_recetas.html',
            context=contexto,
        )
        return http_response
@@ -144,7 +144,7 @@ def buscar_articulo(request):
        }
        http_response = render(
            request=request,
-           template_name='blog/articulos.html',
+           template_name='blog/lista_articulos.html',
            context=contexto,
        )
        return http_response
