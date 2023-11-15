@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from blog.views import (
-    CafeteriasCreateView,CafeteriasDeleteView,CafeteriasDetailView,CafeteriasListView,CafeteriasUpdateView,
+    CafeteriasCreateView,CafeteriasDeleteView,CafeteriasListView,CafeteriasUpdateView,
     ArticulosCreateView,ArticulosDeleteView,ArticulosDetailView,ArticulosListView,ArticulosUpdateView,
     RecetasCreateView,RecetasDeleteView,RecetasDetailView,RecetasListView,RecetasUpdateView,
     buscar_cafeteria,buscar_articulo,buscar_receta,
@@ -22,7 +22,7 @@ urlpatterns = [
     path("recetas/", RecetasListView.as_view(), name="lista_recetas"),
 
     #DetailView
-    path('cafeterias/<int:pk>/', CafeteriasDetailView.as_view(), name="ver_cafeteria"),
+    
     path('articulos/<int:pk>/', ArticulosDetailView.as_view(), name="ver_articulo"),
     path('recetas/<int:pk>/', RecetasDetailView.as_view(), name="ver_receta"),
 

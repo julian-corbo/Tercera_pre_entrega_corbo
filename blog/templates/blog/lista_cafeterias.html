@@ -24,15 +24,11 @@
          <th>Direccion</th>
          <td></td>
          <td></td>
-         <td></td>
        </tr>
        {% for cafeterias in object_list %}
        <tr>
          <td>{{ cafeterias.nombre }}</td>
          <td>{{ cafeterias.direccion}}</td>
-         <td>
-           <a href="{% url 'ver_cafeteria' cafeterias.id %}">Ver</a>
-         </td>
          {% if cafeterias.creador == user %}
          <td>
            <a href="{% url 'editar_cafeteria' cafeterias.id %}">Editar</a>

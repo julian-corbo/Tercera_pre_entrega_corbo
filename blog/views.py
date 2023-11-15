@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.views.generic import ListView,CreateView,DetailView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from blog.forms import CafeteriaFormulario,ArticulosFormulario,RecetasFormulario
+from blog.forms import ArticulosFormulario,RecetasFormulario
 from blog.models import Cafeterias,Recetas,Articulos
 
 
@@ -24,10 +24,10 @@ class RecetasListView(ListView):
 
 #DetailView
 
-class CafeteriasDetailView(DetailView):
+""" class CafeteriasDetailView(DetailView):
    model = Cafeterias
    success_url = reverse_lazy('lista_cafeterias')
-   
+ """   
 class ArticulosDetailView(DetailView):
    model = Articulos
    success_url = reverse_lazy('lista_articulos')
@@ -50,7 +50,7 @@ class CafeteriasCreateView(LoginRequiredMixin,CreateView):
    
 class ArticulosCreateView(LoginRequiredMixin,CreateView):
    model = Articulos
-   fields = ( 'cafeteria_reseniada','titulo','texto','puntaje')
+   form_class= ArticulosFormulario
    success_url = reverse_lazy('lista_articulos')
    
    def form_valid(self, form):
