@@ -15,4 +15,20 @@
 {% else %}
 <h1>Bienvenido/a a Brew & Review</h1>
 {% endif %}
+<br>
+<br>
+
+<div class="articulos-grid">
+    {% for articulo in articulos %}
+        <div class="articulos">
+            <h6>{{ articulo.titulo }} por {{articulo.autor}}</h6>
+            <p>{{ articulo.texto|truncatewords:100 }}</p>
+            <p><a href="{% url 'ver_articulo' articulo.id %}">Leer mas</a></p>
+            <br>
+            
+            <!-- El filtro 'truncatewords' corta el contenido a las primeras 30 palabras. Ajusta según necesites. -->
+        </div>
+    {% endfor %}
+</div>
+
 {% endblock contenido %}

@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from blog.models import Articulos
 
 def inicio(request):
-    contexto= {}
+    articulos = Articulos.objects.all()[:3]
+
+    contexto= {"articulos":articulos}
+
     http_response = render(
         request=request,
         template_name='inicio.html',
