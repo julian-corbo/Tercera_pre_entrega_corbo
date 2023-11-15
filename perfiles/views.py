@@ -7,7 +7,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView
 
-from perfiles.forms import UserRegisterForm, UserUpdateForm
+from perfiles.forms import UserRegisterForm, UserUpdateForm, AvatarForm
 
 #Vista Funcional
 def signup(request):
@@ -50,6 +50,25 @@ def login_view(request):
        template_name='perfiles/login.html',
        context={'form': form},
    )
+
+def agregar_avatar(request):
+  if request.method == "POST":
+      formulario = AvatarForm(request.POST, request.FILES) # Aquí me llega toda la info del formulario html
+
+      if formulario.is_valid():
+          avatar = formulario.save()
+          avatar.user = request.user
+          avatar.save()
+          url_exitosa = reverse('inicio')
+          return redirect(url_exitosa)
+  else:  # GET
+      formulario = AvatarForm()
+  return render(
+      request=request,
+      template_name="perfiles/avatar_form.html",
+      context={'form': formulario},
+  )
+
 
 #Vista Basada en Clases
 class CustomLogoutView(LogoutView):
