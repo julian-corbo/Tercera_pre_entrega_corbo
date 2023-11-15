@@ -32,6 +32,7 @@ class Articulos(models.Model):
     puntaje = models.IntegerField(
         default=0, validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
+    fecha= models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         if self.creador:
@@ -39,4 +40,4 @@ class Articulos(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.titulo} por {self.autor} (Escribe Sobre: {self.cafeteria_reseniada})" #me gustaria que solo me muestre el nombre y no la direccion
+        return f"{self.titulo} por {self.autor}" 

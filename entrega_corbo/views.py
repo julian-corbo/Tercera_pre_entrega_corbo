@@ -2,7 +2,7 @@ from django.shortcuts import render
 from blog.models import Articulos
 
 def inicio(request):
-    articulos = Articulos.objects.all()[:3]
+    articulos = Articulos.objects.order_by('-fecha')[:3] 
 
     contexto= {"articulos":articulos}
 

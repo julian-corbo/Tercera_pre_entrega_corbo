@@ -22,11 +22,11 @@
     {% for articulo in articulos %}
         <div class="articulos">
             <h6>{{ articulo.titulo }} por {{articulo.autor}}</h6>
-            <p>{{ articulo.texto|truncatewords:100 }}</p>
+            <p>{{ articulo.texto|safe |truncatewords:100 }}</p>
             <p><a href="{% url 'ver_articulo' articulo.id %}">Leer mas</a></p>
             <br>
             
-            <!-- El filtro 'truncatewords' corta el contenido a las primeras 30 palabras. Ajusta según necesites. -->
+            <!-- El filtro 'truncatewords' corta el contenido a las primeras 100 palabras. -->
         </div>
     {% endfor %}
 </div>
