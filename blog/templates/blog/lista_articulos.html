@@ -16,7 +16,7 @@
         <input type="submit" value="Buscar articulo">
     </form>
     <br>
-
+  {% if object_list %}
    <table class="table">
      <tbody>
        <tr>
@@ -54,6 +54,9 @@
    <br>
    <a href="{% url 'lista_articulos' %}">Ver Todos</a>
    <br>
+   {% else %}
+   <p>No hay entradas aún.</p>
+   {% endif %}
    <a href="{% url 'crear_articulo' %}">Crear articulo</a>
    <br>
  </div>

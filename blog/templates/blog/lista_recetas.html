@@ -17,6 +17,7 @@
     </form>
     <br>
 
+  {% if object_list %}
    <table class="table">
      <tbody>
        <tr>
@@ -48,6 +49,9 @@
    <br>
    <a href="{% url 'lista_recetas' %}">Ver Todos</a>
    <br>
+   {% else %}
+   <p>No hay entradas aún.</p>
+   {% endif %}
    <a href="{% url 'crear_receta' %}">Crear receta</a>
    <br>
  </div>
