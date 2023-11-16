@@ -5,11 +5,31 @@
 {% endblock titulo %}
 
 {% block contenido %}
-<header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+
+<style>
+    .post-title {
+        color: black; 
+        text-decoration: none; 
+    }
+
+    .post-link {
+        text-decoration: none;  /* Agregado para el estado normal */
+    }
+
+    .post-link:hover {
+        text-decoration: underline;  /* Agregado para el estado de hover */
+    }
+
+    .post-meta {
+        font-size: 0.8em;  
+    }
+</style>
+
+<header class="masthead" style="background-image: url('media/fondo/fondo.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="site-heading">
+                <div class="site-heading text-white">
                     {% if user.is_authenticated %}
                     <h1>Bienvenido/a a Brew & Review, {{user.first_name}}</h1>
                     <span class="subheading">El cafe esta pronto</span>
@@ -26,17 +46,19 @@
 <br>
 
 <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="row gx-4 gx-lg-5 justify-content-left">
         {% for articulo in articulos %}
         <div class="col-md-10 col-lg-8 col-xl-7">
             <!-- Post preview-->
-            <div class="post-preview">
-                <a href="{% url 'ver_articulo' articulo.id %}">
+                <a href="{% url 'ver_articulo' articulo.id %}" class="post-link">
                     <h2 class="post-title">{{ articulo.titulo }} </h2>
-                    <h3 class="post-subtitle">{{ articulo.texto|safe |truncatewords:100 }}</h3>
                 </a>
+
+                <p class="post-subtitle">
+                     {{ articulo.texto|safe |truncatewords:100 }}
+                </p>
                 <p class="post-meta">
-                    por {{articulo.autor}}, {{articulo.fecha}} 
+                   <em> por <strong>{{articulo.autor}}</strong>, {{articulo.fecha}} </em> 
                 </p>
             </div>
             <!-- Divider-->
@@ -47,21 +69,3 @@
 </div>
 
 {% endblock contenido %}
-
-<header class="masthead" style="background-image: url('static/assets/img/cafe.jpeg')">
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="site-heading">
-                    {% if user.is_authenticated %}
-                    <h1>Bienvenido/a a Brew & Review, {{user.first_name}}</h1>
-                    <span class="subheading">El cafe esta pronto</span>
-                    {% else %}
-                    <h1>Bienvenido/a a Brew & Review</h1>
-                    <span class="subheading">Inicia sesion para comenzar a reseñar</span>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-</header>

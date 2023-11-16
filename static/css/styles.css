@@ -10917,3 +10917,11 @@ footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+
+<style>
+    .post-title {
+        color: black; /* Cambia el color del título */
+        text-decoration: none; /* Elimina el subrayado del enlace */
+    }
+
+</style>
