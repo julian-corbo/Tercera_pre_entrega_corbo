@@ -5,30 +5,63 @@
 {% endblock titulo %}
 
 {% block contenido %}
-{% if user.is_authenticated %}
-
-<header>
-    <h1>Bienvenido/a a Brew & Review, {{user.first_name}}. El cafe esta pronto</h1>
-
-</header>
-
-{% else %}
-<h1>Bienvenido/a a Brew & Review</h1>
-{% endif %}
-<br>
-<br>
-
-<div class="articulos-grid">
-    {% for articulo in articulos %}
-        <div class="articulos">
-            <h6>{{ articulo.titulo }} por {{articulo.autor}}</h6>
-            <p>{{ articulo.texto|safe |truncatewords:100 }}</p>
-            <p><a href="{% url 'ver_articulo' articulo.id %}">Leer mas</a></p>
-            <br>
-            
-            <!-- El filtro 'truncatewords' corta el contenido a las primeras 100 palabras. -->
+<header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    {% if user.is_authenticated %}
+                    <h1>Bienvenido/a a Brew & Review, {{user.first_name}}</h1>
+                    <span class="subheading">El cafe esta pronto</span>
+                    {% else %}
+                    <h1>Bienvenido/a a Brew & Review</h1>
+                    <span class="subheading">Inicia sesion para comenzar a reseñar</span>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    {% endfor %}
+    </div>
+</header>
+<br>
+<br>
+
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        {% for articulo in articulos %}
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post preview-->
+            <div class="post-preview">
+                <a href="{% url 'ver_articulo' articulo.id %}">
+                    <h2 class="post-title">{{ articulo.titulo }} </h2>
+                    <h3 class="post-subtitle">{{ articulo.texto|safe |truncatewords:100 }}</h3>
+                </a>
+                <p class="post-meta">
+                    por {{articulo.autor}}, {{articulo.fecha}} 
+                </p>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4">
+        {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock contenido %}
+
+<header class="masthead" style="background-image: url('static/assets/img/cafe.jpeg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    {% if user.is_authenticated %}
+                    <h1>Bienvenido/a a Brew & Review, {{user.first_name}}</h1>
+                    <span class="subheading">El cafe esta pronto</span>
+                    {% else %}
+                    <h1>Bienvenido/a a Brew & Review</h1>
+                    <span class="subheading">Inicia sesion para comenzar a reseñar</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
