@@ -81,3 +81,16 @@ class MiPerfilUpdateView(LoginRequiredMixin, UpdateView):
 
    def get_object(self, queryset=None):
        return self.request.user
+
+def about_me(request):
+    
+    context = {
+        'nombre': 'Julian Corbo',
+        'informacion': '''
+            Soy estudiante de sociologia y me apasionan los metodos cuantitativos y los datos, por lo que me gustaria aprender mas de Data Science. 
+            Para esto este curso de python fue el primer paso. Ademas, amo el cafe y actualmente soy barista asi que se me ocurrio que hacer un blog de reseñas
+            de Montevideo era una idea divertida.
+            ''',
+        'foto_url': '/media/aboutme/julian.jfif',  
+    }
+    return render(request, 'perfiles/aboutme.html', context)
