@@ -1,4 +1,10 @@
 # ProyectoCoder
+Entrega final del curso de python comision 47780.
+
++ Es una continuacion de la tercera pre entrega, para ver la evolucion separé la entrega final en el
+```
+ branch "entrega_final"
+```
 
 ## Instrucciones instalar proyecto en local
 + Crea una carpeta contenedora madre
@@ -11,10 +17,9 @@
 pip install -r requirements.txt
 ```
 
+
 ## Instrucciones para entrar al panel aministrativo de Django
-+ En consola, crear un superuser:
-```
-python manage.py createsuperuser
+
 ```
 + Acceder con user y password via:
 ```
