@@ -46,7 +46,7 @@
 <br>
 
 <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-left">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
         {% for articulo in articulos %}
         <div class="col-md-10 col-lg-8 col-xl-7">
             <!-- Post preview-->
@@ -55,7 +55,7 @@
                 </a>
 
                 <p class="post-subtitle">
-                     {{ articulo.texto|safe |truncatewords:100 }}
+                     {{ articulo.texto|safe |truncatewords:50 }}
                 </p>
                 <p class="post-meta">
                    <em> por <strong>{{articulo.autor}}</strong>, {{articulo.fecha}} </em> 

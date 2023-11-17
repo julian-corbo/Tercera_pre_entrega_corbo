@@ -26,4 +26,5 @@ username:julian
 contraseña:admin123
 
 # Usuarios normales
-Se incorporara para la ultima entrega.
+username:coderhouse
+contraseña:comision47780
