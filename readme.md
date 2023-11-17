@@ -17,7 +17,6 @@ Entrega final del curso de python comision 47780.
 pip install -r requirements.txt
 ```
 
-
 ## Instrucciones para entrar al panel aministrativo de Django
 
 ```
@@ -30,6 +29,3 @@ pip install -r requirements.txt
 username:julian
 contraseña:admin123
 
-# Usuarios normales
-username:coderhouse
-contraseña:comision47780
